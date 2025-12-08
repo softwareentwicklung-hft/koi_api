@@ -10,7 +10,11 @@ find_package(asio CONFIG REQUIRED)
 find_package(cpr CONFIG REQUIRED)
 find_package(GTest CONFIG REQUIRED)
 
-add_executable(koi_api main.cpp)
+add_executable(koi_api main.cpp
+        main.cpp
+        main.cpp
+        main.cpp
+        main.cpp)
 
 target_link_libraries(koi_api PRIVATE Crow::Crow asio::asio nlohmann_json::nlohmann_json cpr::cpr)
 
