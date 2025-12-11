@@ -3,97 +3,248 @@
 #include <vector>
 #include <mutex>
 #include <string>
+#include <fstream>
+#include <filesystem>
+#include <chrono>
+#include <iomanip>
 
 using json = nlohmann::json;
 
-struct WaterData{
-        std::string device_id;
-        long timestamp;
-        double tds_value;
-        double temp_value;
-        double ph_value;
+//----Definiert den Namen und Speicherort der CSV-Datei (hier im Ordner des Projekts)---
+const std::string CSV_Air_Filename   = "./airdata_log.csv";
+const std::string CSV_Water_Filename = "./waterdata_log.csv";
+
+std::mutex csv_air_mutex;
+std::mutex csv_water_mutex;
+
+// ------------------- Datenstrukturen -----------------------
+struct WaterData {
+    std::string device_id;
+    long timestamp;
+    double tds_value;
+    double temp_value;
+    double ph_value;
 };
 
-struct AirData{
-        std::string device_id;
-        long timestamp;
-        double pressure_value;
-        double temp_value;
-        double humidity_value;
+struct AirData {
+    std::string device_id;
+    long timestamp;
+    double pressure_value;
+    double temp_value;
+    double humidity_value;
 };
 
+// ------------------- Globale Vektoren ---------------------
 std::vector<WaterData> waterData;
+//Schützt vor gleichzeitigen Zugriffen
 std::mutex waterData_mutex;
+
 std::vector<AirData> airData;
+//Schützt vor gleichzeitigen Zugriffen
 std::mutex airData_mutex;
 
 // JSON Serialisierung für AirData
 // Diese Funktion ermöglicht es nlohmann::json, std::vector<AirData> direkt zu serialisieren.
 void to_json(json& j, const AirData& a) {
     j = json{
-            {"device_id", a.device_id},
-            {"timestamp", a.timestamp},
-            {"pressure_value", a.pressure_value},
-            {"temp_value", a.temp_value},
-            {"humidity_value", a.humidity_value}
+        {"device_id", a.device_id},
+        {"timestamp", a.timestamp},
+        {"pressure_value", a.pressure_value},
+        {"temp_value", a.temp_value},
+        {"humidity_value", a.humidity_value}
     };
 }
 
+// JSON Serialisierung für WaterData
+// Diese Funktion ermöglicht es nlohmann::json, std::vector<AirData> direkt zu serialisieren.
+void to_json(json& j, const WaterData& w) {
+    j = json{
+        {"device_id", w.device_id},
+        {"timestamp", w.timestamp},
+        {"tds_value", w.tds_value},
+        {"temp_value", w.temp_value},
+        {"ph_value", w.ph_value}
+    };
+}
+
+//CSV-Datei erstellen, falls Datei fehlt
+void initializeCSV() {
+    // AirData CSV-Datei kontrollieren, ob besteht und leer ist
+    if (!std::filesystem::exists(CSV_Air_Filename) || std::filesystem::file_size(CSV_Air_Filename) == 0) {
+        //Datei wird zum Schreiben geöffnet
+        std::ofstream file(CSV_Air_Filename);
+    // Spalten-Namen erstellen
+        if (file.is_open()) {
+            file << "device_id;"
+                 << "timestamp;"
+                 << "pressure_value;"
+                 << "temp_value;"
+                 << "humidity_value\n";
+        }
+    }
+
+    // WaterDataCSV-Datei kontrollieren, ob besteht und leer ist
+    if (!std::filesystem::exists(CSV_Water_Filename) || std::filesystem::file_size(CSV_Water_Filename) == 0) {
+        //Datei wird zum Schreiben geöffnet
+        std::ofstream file(CSV_Water_Filename);
+        // Spalten-Namen erstellen
+        if (file.is_open()) {
+            file << "device_id;"
+                 << "timestamp;"
+                 << "tds_value;"
+                 << "temp_value;"
+                 << "ph_value\n";
+        }
+    }
+}
+
+// ------------------- Helper-Funktionen -------------------
+
+// JSON Validierung für AirData
+//Kontrollieren, ob alle Daten vorhanden und richtiger Datentyp-> gibt "true" zurück.
+bool validateAirDataJson(const json& body) {
+    return body.contains("device_id") && body["device_id"].is_string() &&
+           body.contains("timestamp") && body["timestamp"].is_number_integer() &&
+           body.contains("pressure_value") && body["pressure_value"].is_number() &&
+           body.contains("temp_value") && body["temp_value"].is_number() &&
+           body.contains("humidity_value") && body["humidity_value"].is_number();
+}
+
+// JSON Validierung für WaterData
+//Kontrollieren, ob alle Daten vorhanden und richtiger Datentyp → gibt "true" zurück.
+bool validateWaterDataJson(const json& body) {
+    return body.contains("device_id") && body["device_id"].is_string() &&
+           body.contains("timestamp") && body["timestamp"].is_number_integer() &&
+           body.contains("tds_value") && body["tds_value"].is_number() &&
+           body.contains("temp_value") && body["temp_value"].is_number() &&
+           body.contains("ph_value") && body["ph_value"].is_number();
+}
+
+//Konvertieren von Timestamp-Format in Jahr-Monat-Tag-Stunde-Minute-Sekunden-Format
+std::string formatTimestamp(long ts) {
+    std::time_t t = ts;
+    std::tm tm_struct;
+
+#ifdef _WIN32
+    localtime_s(&tm_struct, &t); // Windows
+#else
+    localtime_r(&t, &tm_struct); // Linux
+#endif
+
+    std::ostringstream oss;
+    oss << std::put_time(&tm_struct, "%Y-%m-%d-%H-%M-%S");
+    return oss.str();
+}
+
+// CSV schreiben für AirData
+bool saveAirDataToCSV(const AirData& data) {
+    std::lock_guard<std::mutex> lock(csv_air_mutex);
+    std::ofstream file(CSV_Air_Filename, std::ios::app);
+    if (!file.is_open()) return false;
+
+    file << data.device_id << ";"
+         << formatTimestamp(data.timestamp) << ";"
+         << data.pressure_value << ";"
+         << data.temp_value << ";"
+         << data.humidity_value << "\n";
+    return true;
+}
+
+// CSV schreiben für WaterData
+bool saveWaterDataToCSV(const WaterData& data) {
+    std::lock_guard<std::mutex> lock(csv_water_mutex);
+    std::ofstream file(CSV_Water_Filename, std::ios::app);
+    if (!file.is_open()) return false;
+    file << data.device_id << ";"
+         << formatTimestamp(data.timestamp) << ";"
+         << data.tds_value << ";"
+         << data.temp_value << ";"
+         << data.ph_value << "\n";
+    return true;
+}
+
+// ------------------- MAIN -------------------
 int main() {
     crow::SimpleApp app;
 
-    // POST-Route: Fügt neue Luftdaten hinzu
+    initializeCSV();
+
+    // POST-Route: Fügt neue Luftdaten hin zu
     // Macht diese Route Sinn?
-    CROW_ROUTE(app, "/koi/data").methods("POST"_method)([](const crow::request& req) {
+    CROW_ROUTE(app, "/koi/air").methods("POST"_method)([](const crow::request& req) {
         json body;
-        try {
+        try
+        {
             // Wandelt den Request-Body in ein JSON-Objekt um
             body = json::parse(req.body);
-        } catch (const std::exception& e) {
+        }
+        catch (...)
+        {
             // Fehler bei der JSON-Analyse
             return crow::response(400, "Invalid JSON format in request body.");
         }
 
-        // Validierung der erforderlichen Felder und Datentypen
-        // Benötigt es alle Felder?
-        if (!body.contains("device_id") || !body["device_id"].is_string() ||
-            !body.contains("timestamp") || !body["timestamp"].is_number_integer() ||
-            !body.contains("pressure_value") || !body["pressure_value"].is_number() ||
-            !body.contains("temp_value") || !body["temp_value"].is_number() ||
-            !body.contains("humidity_value") || !body["humidity_value"].is_number()) {
+        if (!validateAirDataJson(body))
+            return crow::response(400, "Invalid AirData JSON fields");
 
-            return crow::response(400, "Invalid JSON: missing or incorrect data types for AirData fields (device_id: string, timestamp: long, others: double).");
-        }
-
-        // Erstelle ein neues AirData-Objekt aus den JSON-Werten
         AirData newAirData{
-                body["device_id"].get<std::string>(),
-                body["timestamp"].get<long>(),
-                body["pressure_value"].get<double>(),
-                body["temp_value"].get<double>(),
-                body["humidity_value"].get<double>()
+            body["device_id"].get<std::string>(),
+            body["timestamp"].get<long>(),
+            body["pressure_value"].get<double>(),
+            body["temp_value"].get<double>(),
+            body["humidity_value"].get<double>()
         };
 
-        // Daten unter Schutz des Mutex zur globalen Liste hinzufügen
-        std::lock_guard<std::mutex> lock(airData_mutex);
-        airData.push_back(newAirData);
+        {
+            std::lock_guard<std::mutex> lock(airData_mutex);
+            airData.push_back(newAirData);
+        }
 
-        // Erfolgreiche Antwort (201 Created) zurückgeben
-        return crow::response(201, "AirData successfully recorded.");
+        if (!saveAirDataToCSV(newAirData))
+            return crow::response(500, "Cannot write AirData to CSV");
+
+        return crow::response(201, "AirData recorded");
     });
 
-    // GET-Route: Gibt alle gespeicherten Luftdaten zurück
-    CROW_ROUTE(app, "/koi/data/airData").methods("GET"_method)([]() {
-        std::lock_guard<std::mutex> lock(airData_mutex);
+    // ------------------- POST WaterData -------------------
+    CROW_ROUTE(app, "/koi/water").methods("POST"_method)([](const crow::request& req) {
+        json body;
+        try { body = json::parse(req.body); }
+        catch (...) { return crow::response(400, "Invalid JSON format"); }
 
-        // Konvertiere den Vektor der AirData-Strukturen in ein JSON-Array
-        // Die Funktion to_json wird hier automatisch von nlohmann::json verwendet.
-        json j = airData;
+        if (!validateWaterDataJson(body))
+            return crow::response(400, "Invalid WaterData JSON fields");
 
-        // Gebe die Daten als JSON zurück
-        return crow::response(200, j.dump());
+        WaterData newWaterData{
+            body["device_id"].get<std::string>(),
+            body["timestamp"].get<long>(),
+            body["tds_value"].get<double>(),
+            body["temp_value"].get<double>(),
+            body["ph_value"].get<double>()
+        };
+
+        {
+            std::lock_guard<std::mutex> lock(waterData_mutex);
+            waterData.push_back(newWaterData);
+        }
+
+        if (!saveWaterDataToCSV(newWaterData))
+            return crow::response(500, "Cannot write WaterData to CSV");
+
+        return crow::response(201, "WaterData recorded");
     });
 
+    // ------------------- GET AirData -------------------
+    CROW_ROUTE(app, "/koi/air").methods("GET"_method)([]() {
+        std::lock_guard<std::mutex> lock(airData_mutex);
+        return crow::response(200, json(airData).dump());
+    });
+
+    // ------------------- GET WaterData -------------------
+    CROW_ROUTE(app, "/koi/water").methods("GET"_method)([]() {
+        std::lock_guard<std::mutex> lock(waterData_mutex);
+        return crow::response(200, json(waterData).dump());
+    });
 
     app.port(18080).multithreaded().run();
 }
