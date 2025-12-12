@@ -11,8 +11,8 @@
 using json = nlohmann::json;
 
 //----Definiert den Namen und Speicherort der CSV-Datei (hier im Ordner des Projekts)---
-const std::string CSV_Air_Filename   = "./airdata_log.csv";
-const std::string CSV_Water_Filename = "./waterdata_log.csv";
+const std::string CSV_Air_Filename   = "./daten/airdata_log.csv";
+const std::string CSV_Water_Filename = "./daten/waterdata_log.csv";
 
 std::mutex csv_air_mutex;
 std::mutex csv_water_mutex;
