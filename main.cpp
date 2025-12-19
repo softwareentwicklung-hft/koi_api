@@ -69,6 +69,7 @@ void to_json(json& j, const WaterData& w) {
 
 //CSV-Datei erstellen, falls Datei fehlt
 void initializeCSV() {
+    std::filesystem::create_directories("./daten");
     // AirData CSV-Datei kontrollieren, ob besteht und leer ist
     if (!std::filesystem::exists(CSV_Air_Filename) || std::filesystem::file_size(CSV_Air_Filename) == 0) {
         //Datei wird zum Schreiben geöffnet
@@ -121,16 +122,21 @@ bool validateWaterDataJson(const json& body) {
 }
 
 //Konvertieren von Timestamp-Format in Jahr-Monat-Tag-Stunde-Minute-Sekunden-Format
+//Macht aus dem Timestamp ein String
 std::string formatTimestamp(long ts) {
+    //time_tist der C++ Zeitstandard in Sekunden seit 1970
     std::time_t t = ts;
-    std::tm tm_struct;
+    //Struktur  im Format Jahr-Monat-Tag-Stunde-Minute-Sekunden-Format wird erstellt
+    std::tm tm_struct{};
 
+// Hier werden die Sekunden seit 1970 in Jahre/Monate/Tage/Stunden/Minuten und Sekunden umgerechnet
+//  entweder in Linux oder Windows Format
 #ifdef _WIN32
     localtime_s(&tm_struct, &t); // Windows
 #else
     localtime_r(&t, &tm_struct); // Linux
 #endif
-
+//oss String wird erstellt und tm_struct in das Format "2025-12-19-10-32-08" gewandelt
     std::ostringstream oss;
     oss << std::put_time(&tm_struct, "%Y-%m-%d-%H-%M-%S");
     return oss.str();
@@ -248,3 +254,4 @@ int main() {
 
     app.port(18080).multithreaded().run();
 }
+//END main
