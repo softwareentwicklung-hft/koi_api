@@ -288,3 +288,4 @@ Abgestellt. Danach lief die Datenerfassung einwandfrei weiter.
 3
 
 20251221
+
