@@ -9,7 +9,7 @@ Dieses readme.md gilt für beide Projekt-Repository:
 //GitHub  Repository https://github.com/orgs/softwareentwicklung-hft/repositories/koi_api  Branch <test>
 //GitHub  Repository https://github.com/Latrusanimi/Projekt_2024/commits?author=Latrusanimi/  Branch <test>
 ############################################################################################################
-fff
+
 
 ## Inhaltsverzeichnis:
 
