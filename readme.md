@@ -188,7 +188,7 @@ Rollenverteilung:
 | Test-Dokument erstellt                                                                               | OK 2)   |
 | Projektdokumentation abgegeben                                                                       | OK      |
 
-1) Erster Tag Datenerfassung Zuhause in Eimer, zweiter Teil im BBZ-Teich; Es wurde festgestellt, dass das BBZ-WLAN zwischen 23:00 und 06:00 Uhr ausgeschaltet wird.
+1) Erster Tag Datenerfassung Zuhause in Eimer, zweiter Teil im BBZ-Teich. Es wurde festgestellt, dass das BBZ-WLAN zwischen 23:00 und 06:00 Uhr ausgeschaltet wird.
 2) Test-Dokumentation ist im readme.md beschrieben.
 
 #### 20251220_Sprint6
@@ -219,7 +219,7 @@ Rollenverteilung:
 - Kanban: [GitHub Projects](https://github.com/users/pesche70/projects/7)
 - Video Schiff: [![Video Schiff](https://youtu.be/jNtSpyThz0I)](https://youtu.be/jNtSpyThz0I)
 - Video Server: [![Video Server](https://youtu.be/KMCbs0tbTSE)](https://youtu.be/KMCbs0tbTSE)
-- excel-Auswertung: [![Video Server](https://youtu.be/KMCbs0tbTSE)](https://youtu.be/KMCbs0tbTSE)
+- Excel-Auswertung: [![Excel-Auswertung](https://youtu.be/KMCbs0tbTSE)](https://youtu.be/KMCbs0tbTSE)
 
  
 ### HTTP Test-Befehle
