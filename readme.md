@@ -1,69 +1,55 @@
-readme für Projekt Koi
-# Beispiel für CMD 
-Zum Anzeigen und Speichern von Luft und Wasserdaten auf einem Server (Notebook_xxx IP ist Netzabhängig).
-curl -X GET http://192.168.20.20:18080/koi/air
+############################################################################################################
+## Koi
+Wasser- und Luft-Daten erfassen und auf Server in CSV-Datei speichern
+Autoren:    Isabel Geissmann(Product-Owner) 
+            Stephan Fankhauser(Tech-Lead)
+            Peter Meier(Scrum-Master)
 
-curl -X POST http://192.168.20.20/koi/air -H "Content-Type: application/json" -d "{\"device_id\": \"SENSOR_01\", \"timestamp\": 1704067200, \"pressure_value\": 1012.5, \"temp_value\": 22.8, \"humidity_value\": 55.7}"
-
-Zum Anzeigen und Speichern von Wasserdaten
-curl -X POST http://192.168.20.20:18080/koi/water -H "Content-Type: application/json" -d "{\"device_id\": \"SENSOR_02\", \"timestamp\": 1704067200, \"tds_value\": 1012.5, \"temp_value\": 22.8, \"ph_value\": 7}"
-
-curl -X GET  http://192.168.20.20:18080/koi/water
-
-
-Auf eigenem Notebook
-
-curl -X GET  http://localhost:18080/koi/air
-
-curl -X POST http://localhost:18080/koi/air -H "Content-Type: application/json" -d "{\"device_id\": \"SENSOR_01\", \"timestamp\": 1704067200, \"pressure_value\": 1012.5, \"temp_value\": 22.8, \"humidity_value\": 55.7}"
-
-Zum Anzeigen und Speichern von Wasserdaten
-curl -X POST http://localhost:18080/koi/water -H "Content-Type: application/json" -d "{\"device_id\": \"SENSOR_02\", \"timestamp\": 1704067200, \"tds_value\": 1012.5, \"temp_value\": 22.8, \"ph_value\": 7}"
-
-curl -X GET  http://localhost:18080/koi/water
+Dieses readme.md gilt für beide Projekt-Repository:
+//GitHub  Repository https://github.com/orgs/softwareentwicklung-hft/repositories/koi_api  Branch <test>
+//GitHub  Repository https://github.com/Latrusanimi/Projekt_2024/commits?author=Latrusanimi/  Branch <test>
+############################################################################################################
 
 
-//Readme vom itHub  Repository "pesche70/Koi" übernommen 20151219
+## Inhaltsverzeichnis:
 
-# Koi
-Daten Wasserqualität erfassen und auf Server in CSV-Datei speichern
+1 Projektbeschreibung:
 
-Autoren: Isabel Geissmann(Product-Owner) / Stephan Fankhauser(Tech-Lead) / Peter Meier(Scrum-Master)
+2 Anforderungen:
 
-## Inhaltsverzeichniss:
+3 Use Case:
 
-Projektbeschreibung:
+4 Anleitung fürs Programm:
 
-Anforderungen:
+5 Fazit:
 
-Use Case:
+6 Scrum Meetings:
 
-Anleitung fürs Programm:
+7 Flussdiagramm:
 
-Fazit:
+8 Systemsequenzdiagramm:
 
-Scrum Meetings:
+9 Projekt-Links:
 
-Flussdiagramm:
+10 HTTP: Test-Befehle:
 
-Systemsequenzdiagramm:
+11 Systemtest:
 
 
-## Projektbeschreibung:
-
+## 1 Projektbeschreibung:
 Im Rahmen dieses Projekts wird eine Anlage erstellt welche die Wasserqualität des BBT-Teichs mit Sensoren und einem Controller erfasst.
 Diese Daten werden via lokales Netzwerk mit WIFI über eine API Schnittstelle an einen Server übertragen.
 Dieser Server speichert die Daten in eine CSV-Datei. Diese CSV-Daten werden in einem Excel Tabelle dargestellt.
 
 
-## Anforderungen:
-| Funktion                                                                   | Muss | Wunsch |
-|----------------------------------------------------------------------------|------|--------|
-| Daten (Feststoff/Temperatur/PH)erfassen mit Sensoren                       | X    | X      |
-| Daten in Controller aufbereiten                                            | X    | -      |
-| Daten via Wifi und API an Server senden                                    | X    | -      |
-| Daten auf Server speichern in  CSV-Datei                                   | X    | -      |
-| Daten der Luft erfassen (Druck/Temperatur/Feuchte)                         | -    | X      |
+## 2 Anforderungen:
+| Funktion                                             | Muss | Wunsch |
+|------------------------------------------------------|------|--------|
+| Daten (Feststoff/Temperatur/PH)erfassen mit Sensoren | X    | -      |
+| Daten in Controller aufbereiten                      | X    | -      |
+| Daten via Wifi und API an Server senden              | X    | -      |
+| Daten auf Server speichern in  CSV-Datei             | X    | -      |
+| Daten der Luft erfassen (Druck/Temperatur/Feuchte)   | -    | X      |
 
 
 | Hardware-Komponente     | Bezeichnung             | Typ        |
@@ -75,13 +61,14 @@ Dieser Server speichert die Daten in eine CSV-Datei. Diese CSV-Daten werden in e
 | PH-Messfühler           | DFROBOT                 | SEN0161-V2 |
 | Messfühler Luftqualität | BME 680                 | BME 680    |
 
-|  Software-Komponente   |
-|------------------------|
-| Clion                  |
-| Git-Hub                |
+| Software-Komponente |
+|---------------------|
+| Clion               |
+| Git-Hub             |
+| MS-Excel            |
 
+## 3 Use Case:
 
-## Use Case:
 Funktionen
 
 Erfassen von Daten
@@ -108,8 +95,7 @@ Ablauf einer Abfrage:
 Nachbedingungen:
 
 
-## Anleitung fürs Programm:
-
+## 4 Anleitung fürs Programm:
 
 Voraussetzungen:
 - CLion (IDE von JetBrains)
@@ -132,21 +118,23 @@ oder
 -
 
 
-## Fazit:
+## 5 Fazit:
 
 | Funktion / Kriterium | Pflicht / Wunsch | Erfüllt?
 
 | Funktion/Kriterium                                 | Pflicht/Wunsch | erfüllt |           
 |----------------------------------------------------|----------------|---------|
-| Daten (Feststoff/Temperatur)erfassen mit Sensoren  | Muss           | -       |
-| Daten in Controller aufbereiten                    | Muss           | -       |
-| Daten via Wifi und API an Server senden            | Muss           | -       |
-| Daten auf Server speichern CSV-Datei               | Muss           | -       |
-| Daten (PH ) erfassen mit Sensoren                  | Wunsch         | -       |
-| Daten der Luft erfassen (Druck/Temperatur/Feuchte) | Wunsch         | -       |
+| Daten (Feststoff/Temperatur)erfassen mit Sensoren  | Muss           | OK      |
+| Daten in Controller aufbereiten                    | Muss           | OK      |
+| Daten via Wifi und API an Server senden            | Muss           | OK      |
+| Daten auf Server speichern CSV-Datei               | Muss           | OK      |
+| Daten (PH ) erfassen mit Sensoren                  | Wunsch         | 1)      |
+| Daten der Luft erfassen (Druck/Temperatur/Feuchte) | Wunsch         | OK      |
+
+1) Weil der PH-Sensor nicht erhalten wurde, fehlt diese Wunschfunktion.
 
 
-## Scrum Meetings:
+## 6 Scrum Meetings:
 
 ## 20251115_Sprint1
 
@@ -206,14 +194,14 @@ Scrum-Master: Peter Meier
 |------------------------------------------------------------------------------------------------------|---------|
 | CLion-Programm APi-Server erstellen/Daten vom Controller als CSV-Datei speichern.                    | OK      |
 | CLion Programm das die Daten im Controller erfasst und  über WiFi an den API-Server sendet erstellen | OK      |
-| Zusammensetzen der Programmteile und testen mit der Hardware                                         | --      |
+| Zusammensetzen der Programmteile und testen mit der Hardware                                         | 1)      |
 
-Weil wie die Sensoren erst am Freitag, 12.12.2025 bekamen konnten wir in dieser Woche den Punkt 3 nicht durchführen.
-
+1) Weil wie die Sensoren erst am Freitag, 12.12.2025 bekamen konnten
+    wir in dieser Woche den Punkt 3 nicht durchführen.
 
 
 ## 20251213_Sprint5
-| Sprint-Ziel                                                                                          |           
+    | Sprint-Ziel                                                                                      |           
 |------------------------------------------------------------------------------------------------------|
 | CLion Programm das die Daten im Controller erfasst und  über WiFi an den API-Server sendet erstellen |   
 | Zusammensetzen der Programmteile und testen mit der Hardware                                         |
@@ -222,8 +210,8 @@ Weil wie die Sensoren erst am Freitag, 12.12.2025 bekamen konnten wir in dieser 
 | Daten über 3 Tage erfasst                                                                            | 
 | Code  auf Git-Hub gespeichert                                                                        | 
 | Dokumentation erstellt                                                                               | 
-| Daten über 3 Tage erfasst                                                                            |
-
+| Video erstellt                                                                                       |  
+| Test-dokument erstellt                                                                               |      
 
 
 ## 20251222_Sprint5 erreicht:
@@ -234,34 +222,69 @@ Weil wie die Sensoren erst am Freitag, 12.12.2025 bekamen konnten wir in dieser 
 | System funktioniert (Hardware und Software)                                                          | OK      |
 | System im Teich und Lehrerzimmer installiert                                                         | OK      |
 | Daten über 3 Tage erfasst                                                                            | 1)      |
-| Code auf Git-Hub gespeichert                                                                         |         |
-| Dokumentation erstellt                                                                               |         |
+| Code auf Git-Hub gespeichert                                                                         | OK      |
+| Dokumentation erstellt                                                                               | OK      |
+| Video erstellt                                                                                       | OK      |
+| Test-Dokument erstellt                                                                               | OK      |
+| Projekdokumentation abgegeben                                                                        | OK      |
 
 1)Der erste Tag der Datenerfassung wurde Zuhause in einem Wassereimer
-  erstellt und der zweite Teil im BBZ-Teich mit einem Testschiff. Dadurch haben wir durch das Datenloggen herausgefunden,
+  erstellt und der zweite Teil im BBZ-Teich mit einem Testschiff.
+  Dadurch haben wir durch das Datenloggen herausgefunden,
   dass das BBZ-W-LAN zwischen 23:00Uhr und 06:00 abgestellt wird.
+  Deshalb fehlen in den CSV-Dateien die Daten zwischen 23:00 und 6:00Uhr.
 
 
 ## 20251220_Sprint6
--Sprint-Ziel: Präsentation Projekt im Januar
+| Sprint-Ziel                                |           
+|--------------------------------------------|
+| Präsentation Projekt im Januar vorbereiten | 
+| Präsentation beendet                       | 
+
+-Sprint-Ziel: Präsentation Projekt im Januar vorbereiten
 
 ## 20260109_Sprint3 erreicht:
-    Präsentation beendet
+| Sprint-Ziel                                | Erfüllt |          
+|--------------------------------------------|---------|
+| Präsentation Projekt im Januar vorbereiten |         |
+| Präsedntation beenet                       |         |
 
 
 
-## Flussdiagramm:
+## 7 Flussdiagramm:
 
-![Datenflussdiagramm](Datenflussdiagramm.png)
+![Datenflussdiagramm](Koi_Datenfluss-Diagramm.png)
 
 
-## Systemsequenzdiagramm:
+## 8 Systemsequenzdiagramm:
 
 ![Systemsequenzdiagramm](Flussdiagramm_Wasserqualität.png)
 
+## 9 Projekt-Links:
 
-End
+//GitHub  Repository https://github.com/orgs/softwareentwicklung-hft/repositories/koi_api  Branch <test>
+//GitHub  Repository https://github.com/Latrusanimi/Projekt_2024/commits?author=Latrusanimi/  Branch <test>
 
 
+## 10 HTTP: Test-Befehle  (Kommandozeile)
 
-fgfhfghfghfh
+Zum Anzeigen und Speichern von Luft und Wasserdaten auf einem Server (Notebook_xxx IP ist Netzabhängig).
+
+curl -X GET http://<IP-Adresse Server>:18080/koi/air
+curl -X POST http://<IP-Adresse Server>/koi/air -H "Content-Type: application/json" -d "{\"device_id\": \"SENSOR_01\", \"timestamp\": 1704067200, \"pressure_value\": 1012.5, \"temp_value\": 22.8, \"humidity_value\": 55.7}"
+
+Zum Anzeigen und Speichern von Wasserdaten
+
+curl -X POST http://<IP-Adresse Server>:18080/koi/water -H "Content-Type: application/json" -d "{\"device_id\": \"SENSOR_02\", \"timestamp\": 1704067200, \"tds_value\": 1012.5, \"temp_value\": 22.8, \"ph_value\": 7}"
+curl -X GET  http://<IP-Adresse Server>:18080/koi/water
+
+## 11 Systemtest
+
+1 Stabilität der W-LAN-Verbindung wurde beim Erfassen der Daten das BBZ-Netzwerk zwischen 23:00 und 6:00Uhr
+  Abgestellt. Danach lief die Datenerfassung einwandfrei weiter.
+
+2 Fehlen von einzelnen Daten im CSV-Datei
+
+3 
+
+20251221
