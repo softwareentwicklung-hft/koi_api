@@ -1,4 +1,4 @@
-######################################################################
+###############################################################
 ## Koi
 Wasser- und Luft-Daten erfassen und auf Server in CSV-Datei speichern
 Autoren: Isabel Geissmann(Product-Owner)
@@ -8,7 +8,8 @@ Autoren: Isabel Geissmann(Product-Owner)
 Dieses readme.md gilt für beide GitHub Projekt-Repository:
  https://github.com/softwareentwicklung-hft/koi_api/tree/test 
  https://github.com/Latrusanimi/Koi
-######################################################################
+
+###############################################################
 
 
 ## Inhaltsverzeichnis:
@@ -34,6 +35,7 @@ Dieses readme.md gilt für beide GitHub Projekt-Repository:
 10 HTTP: Test-Befehle:
 
 11 Systemtest:
+
 
 
 ## 1 Projektbeschreibung:
@@ -264,6 +266,13 @@ Deshalb fehlen in den CSV-Dateien die Daten zwischen 23:00 und 6:00Uhr.
 
 //GitHub  Repository https://github.com/orgs/softwareentwicklung-hft/repositories/koi_api  Branch <test>
 //GitHub  Repository https://github.com/Latrusanimi/Projekt_2024/commits?author=Latrusanimi/  Branch <test>
+
+//CSV-Dateien  waterdata_log.csv https://github.com/softwareentwicklung-hft/koi_api/tree/test
+               airdata_log.csv   https://github.com/softwareentwicklung-hft/koi_api/tree/test
+
+
+
+
 
 
 ## 10 HTTP: Test-Befehle (Kommandozeile)
