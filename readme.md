@@ -1,8 +1,11 @@
 ###############################################################
 # Koi
 Wasser- und Luft-Daten erfassen und auf Server in CSV-Datei speichern
+
 Autoren: Isabel Geissmann(Product-Owner)
+
 Stephan Fankhauser (Tech-Lead)
+
 Peter Meier (Scrum-Master)
 
 Dieses readme.md gilt für beide GitHub Projekt-Repository:
