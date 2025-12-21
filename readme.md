@@ -192,20 +192,26 @@ Rollenverteilung:
 
 ### Projekt-Links
 - GitHub Repository 1: [koi_api](https://github.com/softwareentwicklung-hft/koi_api/tree/test)
-- GitHub Repository 2: [Projekt_2024](https://github.com/Latrusanimi/Koi)
-- CSV-Dateien: [waterdata_log.csv](https://github.com/softwareentwicklung-hft/koi_api/tree/test) | [airdata_log.csv](https://github.com/softwareentwicklung-hft/koi_api/tree/test)
+- GitHub Repository 2: [Koi](https://github.com/Latrusanimi/Koi)
+- CSV-Dateien: [waterdata_log.csv](https://github.com/softwareentwicklung-hft/koi_api/tree/test) 
+               [airdata_log.csv](https://github.com/softwareentwicklung-hft/koi_api/tree/test)
 - Kanban: [GitHub Projects](https://github.com/users/pesche70/projects/7)
+- Videos:
 
 ### HTTP Test-Befehle
 
  Luftdaten abrufen
+
 curl -X GET http://<IP-Adresse Server>:18080/koi/air
 
  Luftdaten speichern
+
 curl -X POST http://<IP-Adresse Server>/koi/air -H "Content-Type: application/json" -d "{\"device_id\": \"SENSOR_01\", \"timestamp\": 1704067200, \"pressure_value\": 1012.5, \"temp_value\": 22.8, \"humidity_value\": 55.7}"
 
  Wasserdaten speichern
+
 curl -X POST http://<IP-Adresse Server>:18080/koi/water -H "Content-Type: application/json" -d "{\"device_id\": \"SENSOR_02\", \"timestamp\": 1704067200, \"tds_value\": 1012.5, \"temp_value\": 22.8, \"ph_value\": 7}"
 
  Wasserdaten abrufen
+
 curl -X GET http://<IP-Adresse Server>:18080/koi/water
