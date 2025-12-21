@@ -1,15 +1,15 @@
 ############################################################################################################
 ## Koi
 Wasser- und Luft-Daten erfassen und auf Server in CSV-Datei speichern
-Autoren:    Isabel Geissmann(Product-Owner) 
-            Stephan Fankhauser(Tech-Lead)
-            Peter Meier(Scrum-Master)
+Autoren:    Isabel Geissmann(Product-Owner)
+Stephan Fankhauser(Tech-Lead)
+Peter Meier(Scrum-Master)
 
 Dieses readme.md gilt für beide Projekt-Repository:
 //GitHub  Repository https://github.com/orgs/softwareentwicklung-hft/repositories/koi_api  Branch <test>
 //GitHub  Repository https://github.com/Latrusanimi/Projekt_2024/commits?author=Latrusanimi/  Branch <test>
 ############################################################################################################
-
+fff
 
 ## Inhaltsverzeichnis:
 
@@ -197,7 +197,7 @@ Scrum-Master: Peter Meier
 | Zusammensetzen der Programmteile und testen mit der Hardware                                         | 1)      |
 
 1) Weil wie die Sensoren erst am Freitag, 12.12.2025 bekamen konnten
-    wir in dieser Woche den Punkt 3 nicht durchführen.
+   wir in dieser Woche den Punkt 3 nicht durchführen.
 
 
 ## 20251213_Sprint5
@@ -205,13 +205,13 @@ Scrum-Master: Peter Meier
 |------------------------------------------------------------------------------------------------------|
 | CLion Programm das die Daten im Controller erfasst und  über WiFi an den API-Server sendet erstellen |   
 | Zusammensetzen der Programmteile und testen mit der Hardware                                         |
-| System funktioniert (Hardware und Software)                                                          | 
-| System im Teich und Lehrerzimmer installiert                                                         | 
-| Daten über 3 Tage erfasst                                                                            | 
-| Code  auf Git-Hub gespeichert                                                                        | 
-| Dokumentation erstellt                                                                               | 
+| System funktioniert (Hardware und Software)                                                          |
+| System im Teich und Lehrerzimmer installiert                                                         |
+| Daten über 3 Tage erfasst                                                                            |
+| Code  auf Git-Hub gespeichert                                                                        |
+| Dokumentation erstellt                                                                               |
 | Video erstellt                                                                                       |  
-| Test-dokument erstellt                                                                               |      
+| Test-dokument erstellt                                                                               |
 
 
 ## 20251222_Sprint5 erreicht:
@@ -229,10 +229,10 @@ Scrum-Master: Peter Meier
 | Projekdokumentation abgegeben                                                                        | OK      |
 
 1)Der erste Tag der Datenerfassung wurde Zuhause in einem Wassereimer
-  erstellt und der zweite Teil im BBZ-Teich mit einem Testschiff.
-  Dadurch haben wir durch das Datenloggen herausgefunden,
-  dass das BBZ-W-LAN zwischen 23:00Uhr und 06:00 abgestellt wird.
-  Deshalb fehlen in den CSV-Dateien die Daten zwischen 23:00 und 6:00Uhr.
+erstellt und der zweite Teil im BBZ-Teich mit einem Testschiff.
+Dadurch haben wir durch das Datenloggen herausgefunden,
+dass das BBZ-W-LAN zwischen 23:00Uhr und 06:00 abgestellt wird.
+Deshalb fehlen in den CSV-Dateien die Daten zwischen 23:00 und 6:00Uhr.
 
 
 ## 20251220_Sprint6
@@ -281,10 +281,10 @@ curl -X GET  http://<IP-Adresse Server>:18080/koi/water
 ## 11 Systemtest
 
 1 Stabilität der W-LAN-Verbindung wurde beim Erfassen der Daten das BBZ-Netzwerk zwischen 23:00 und 6:00Uhr
-  Abgestellt. Danach lief die Datenerfassung einwandfrei weiter.
+Abgestellt. Danach lief die Datenerfassung einwandfrei weiter.
 
 2 Fehlen von einzelnen Daten im CSV-Datei
 
-3 
+3
 
 20251221
