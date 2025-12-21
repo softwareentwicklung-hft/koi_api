@@ -193,11 +193,11 @@ Rollenverteilung:
 ### Projekt-Links
 - GitHub Repository 1: [koi_api](https://github.com/softwareentwicklung-hft/koi_api/tree/test)
 - GitHub Repository 2: [Koi](https://github.com/Latrusanimi/Koi)
-- CSV-Dateien: [waterdata_log.csv](https://github.com/softwareentwicklung-hft/koi_api/tree/test) 
-               [airdata_log.csv](https://github.com/softwareentwicklung-hft/koi_api/tree/test)
+- CSV-Dateien: [waterdata_log.csv](https://github.com/softwareentwicklung-hft/koi_api/blob/test/waterdata_log.csv) 
+               [airdata_log.csv](https://github.com/softwareentwicklung-hft/koi_api/blob/test/airdata_log.csv)
 - Kanban: [GitHub Projects](https://github.com/users/pesche70/projects/7)
 - Videos:
-
+ 
 ### HTTP Test-Befehle
 
  Luftdaten abrufen
