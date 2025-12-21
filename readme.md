@@ -215,3 +215,5 @@ curl -X POST http://<IP-Adresse Server>:18080/koi/water -H "Content-Type: applic
  Wasserdaten abrufen
 
 curl -X GET http://<IP-Adresse Server>:18080/koi/water
+
+20251221
