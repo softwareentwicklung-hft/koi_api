@@ -1,15 +1,15 @@
-############################################################################################################
+######################################################################
 ## Koi
 Wasser- und Luft-Daten erfassen und auf Server in CSV-Datei speichern
-Autoren:    Isabel Geissmann(Product-Owner)
-Stephan Fankhauser(Tech-Lead)
-Peter Meier(Scrum-Master)
+Autoren: Isabel Geissmann(Product-Owner)
+         Stephan Fankhauser (Tech-Lead)
+         Peter Meier (Scrum-Master)
 
-Dieses readme.md gilt für beide Projekt-Repository:
-//GitHub  Repository https://github.com/orgs/softwareentwicklung-hft/repositories/koi_api  Branch <test>
-//GitHub  Repository https://github.com/Latrusanimi/Projekt_2024/commits?author=Latrusanimi/  Branch <test>
-############################################################################################################
-fff
+Dieses readme.md gilt für beide GitHub Projekt-Repository:
+ https://github.com/softwareentwicklung-hft/koi_api/tree/test 
+ https://github.com/Latrusanimi/Koi
+######################################################################
+
 
 ## Inhaltsverzeichnis:
 
@@ -201,7 +201,7 @@ Scrum-Master: Peter Meier
 
 
 ## 20251213_Sprint5
-    | Sprint-Ziel                                                                                      |           
+ | Sprint-Ziel                                                                                          |           
 |------------------------------------------------------------------------------------------------------|
 | CLion Programm das die Daten im Controller erfasst und  über WiFi an den API-Server sendet erstellen |   
 | Zusammensetzen der Programmteile und testen mit der Hardware                                         |
@@ -243,7 +243,7 @@ Deshalb fehlen in den CSV-Dateien die Daten zwischen 23:00 und 6:00Uhr.
 
 -Sprint-Ziel: Präsentation Projekt im Januar vorbereiten
 
-## 20260109_Sprint3 erreicht:
+## 20260109_Sprint6 erreicht:
 | Sprint-Ziel                                | Erfüllt |          
 |--------------------------------------------|---------|
 | Präsentation Projekt im Januar vorbereiten |         |
@@ -266,7 +266,7 @@ Deshalb fehlen in den CSV-Dateien die Daten zwischen 23:00 und 6:00Uhr.
 //GitHub  Repository https://github.com/Latrusanimi/Projekt_2024/commits?author=Latrusanimi/  Branch <test>
 
 
-## 10 HTTP: Test-Befehle  (Kommandozeile)
+## 10 HTTP: Test-Befehle (Kommandozeile)
 
 Zum Anzeigen und Speichern von Luft und Wasserdaten auf einem Server (Notebook_xxx IP ist Netzabhängig).
 
@@ -281,7 +281,7 @@ curl -X GET  http://<IP-Adresse Server>:18080/koi/water
 ## 11 Systemtest
 
 1 Stabilität der W-LAN-Verbindung wurde beim Erfassen der Daten das BBZ-Netzwerk zwischen 23:00 und 6:00Uhr
-Abgestellt. Danach lief die Datenerfassung einwandfrei weiter.
+  abgestellt. Danach lief die Datenerfassung einwandfrei weiter.
 
 2 Fehlen von einzelnen Daten im CSV-Datei
 
