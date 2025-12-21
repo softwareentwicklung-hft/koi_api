@@ -23,6 +23,8 @@ https://github.com/Latrusanimi/Koi
 2. [Anforderungen](#anforderungen)
    - [Funktionen](#funktionen)
    - [Hardware-Komponenten](#hardware-komponenten)
+    - [Ursprüngliches Setting](#ursprüngliches-Setting) 
+    - [Aktuelles Setting](#aktuelles-Setting)
    - [Software-Komponenten](#software-komponenten)
 3. [Scrum Meetings](#scrum-meetings)
    - [20251115_Sprint1](#20251115_sprint1)
