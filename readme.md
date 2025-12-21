@@ -43,7 +43,7 @@ https://github.com/Latrusanimi/Koi
 5. [Ablaufdiagramm](#ablaufdiagramm)
 6. [Projekt-Links](#projekt-links)
 7. [HTTP Test-Befehle](#http-test-befehle)
-
+8. [Systemtest](#systemtest)
 
 ---
 
@@ -185,10 +185,11 @@ Rollenverteilung:
 | Code auf GitHub gespeichert                                                                          | OK      |
 | Dokumentation erstellt                                                                               | OK      |
 | Video erstellt                                                                                       | OK      |
-| Test-Dokument erstellt                                                                               | OK      |
+| Test-Dokument erstellt                                                                               | OK 2)   |
 | Projektdokumentation abgegeben                                                                       | OK      |
 
 1) Erster Tag Datenerfassung Zuhause in Eimer, zweiter Teil im BBZ-Teich; Es wurde festgestellt, dass das BBZ-WLAN zwischen 23:00 und 06:00 Uhr ausgeschaltet wird.
+2) Test-Dokumentation ist im readme.md beschrieben.
 
 #### 20251220_Sprint6
 | Sprint-Ziel                                |           
