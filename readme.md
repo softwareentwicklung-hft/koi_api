@@ -1,300 +1,211 @@
 ###############################################################
-## Koi
+# Koi
 Wasser- und Luft-Daten erfassen und auf Server in CSV-Datei speichern
 Autoren: Isabel Geissmann(Product-Owner)
-         Stephan Fankhauser (Tech-Lead)
-         Peter Meier (Scrum-Master)
+Stephan Fankhauser (Tech-Lead)
+Peter Meier (Scrum-Master)
 
 Dieses readme.md gilt für beide GitHub Projekt-Repository:
- https://github.com/softwareentwicklung-hft/koi_api/tree/test 
- https://github.com/Latrusanimi/Koi
+https://github.com/softwareentwicklung-hft/koi_api/tree/test
+https://github.com/Latrusanimi/Koi
 
 ###############################################################
 
 
-## Inhaltsverzeichnis:
+## Inhaltsverzeichnis
 
-1 Projektbeschreibung:
-
-2 Anforderungen:
-
-3 Use Case:
-
-4 Anleitung fürs Programm:
-
-5 Fazit:
-
-6 Scrum Meetings:
-
-7 Flussdiagramm:
-
-8 Systemsequenzdiagramm:
-
-9 Projekt-Links:
-
-10 HTTP: Test-Befehle:
-
-11 Systemtest:
-
-
-
-## 1 Projektbeschreibung:
-Im Rahmen dieses Projekts wird eine Anlage erstellt welche die Wasserqualität des BBT-Teichs mit Sensoren und einem Controller erfasst.
-Diese Daten werden via lokales Netzwerk mit WIFI über eine API Schnittstelle an einen Server übertragen.
-Dieser Server speichert die Daten in eine CSV-Datei. Diese CSV-Daten werden in einem Excel Tabelle dargestellt.
+1. [Projektbeschreibung](#projektbeschreibung)
+2. [Anforderungen](#anforderungen)
+   - [Funktionen](#funktionen)
+   - [Hardware-Komponenten](#hardware-komponenten)
+   - [Software-Komponenten](#software-komponenten)
+3. [Scrum Meetings](#scrum-meetings)
+   - [20251115_Sprint1](#20251115_sprint1)
+   - [20251122_Sprint1 erreicht](#20251122_sprint1-erreicht)
+   - [20251122_Sprint2](#20251122_sprint2)
+   - [20251129_Sprint2 erreicht](#20251129_sprint2-erreicht)
+   - [20251129_Sprint3](#20251129_sprint3)
+   - [20251206_Sprint3 erreicht](#20251206_sprint3-erreicht)
+   - [20251206_Sprint4](#20251206_sprint4)
+   - [20251213_Sprint4 erreicht](#20251213_sprint4-erreicht)
+   - [20251213_Sprint5](#20251213_sprint5)
+   - [20251222_Sprint5 erreicht](#20251222_sprint5-erreicht)
+   - [20251220_Sprint6](#20251220_sprint6)
+   - [20260109_Sprint6 erreicht](#20260109_sprint6-erreicht)
+4. [Flussdiagramm](#flussdiagramm)
+5. [Ablaufdiagramm](#ablaufdiagramm)
+6. [Projekt-Links](#projekt-links)
+7. [HTTP Test-Befehle](#http-test-befehle)
 
 
-## 2 Anforderungen:
-| Funktion                                             | Muss | Wunsch |
-|------------------------------------------------------|------|--------|
-| Daten (Feststoff/Temperatur/PH)erfassen mit Sensoren | X    | -      |
-| Daten in Controller aufbereiten                      | X    | -      |
-| Daten via Wifi und API an Server senden              | X    | -      |
-| Daten auf Server speichern in  CSV-Datei             | X    | -      |
-| Daten der Luft erfassen (Druck/Temperatur/Feuchte)   | -    | X      |
+---
 
+### Projektbeschreibung
+Im Rahmen dieses Projekts wird eine Anlage erstellt,
+welche die Wasserqualität des BBT-Teichs mit Sensoren und einem Controller erfasst.  
+Diese Daten werden via lokales Netzwerk mit WiFi über eine API an einen Server übertragen,
+der sie in einer CSV-Datei speichert.
 
+---
+
+### Anforderungen
+
+#### Funktionen
+| Funktion                                 | Muss | Wunsch | erfüllt |
+|------------------------------------------|------|--------|---------|
+| Daten Wassertemperatur erfassen          | X    | -      | OK      |
+| Daten Wasserfeststoff erfassen           | X    | -      | OK      |
+| Daten in Controller aufbereiten          | X    | -      | OK      |
+| Daten via WiFi und API an Server senden  | X    | -      | OK      |
+| Daten auf Server speichern in CSV-Datei  | X    | -      | OK      |
+| Daten Luft erfassen (Druck/Temp/Feuchte) | -    | X      | OK      |
+| Daten Wasser PH-Wert erfassen            | -    | X      | 1)      |
+
+1) Weil der PH-Sensor nicht erhalten wurde, fehlt diese Wunschfunktion.
+
+#### Hardware-Komponenten
 | Hardware-Komponente     | Bezeichnung             | Typ        |
 |-------------------------|-------------------------|------------|
-| Microcontroller ESP 32  | Freenove ESP32-S3-WROOM | FNK0099    |
+| Microcontroller ESP32   | Freenove ESP32-S3-WROOM | FNK0099    |
 | Breakoutboard           | Freenove Breakoutboard  | FNK0091    |
 | TDS-Sensor              | Seed Studio SKU X       | 101020753  |
 | Temperaturfühler        | DS18B20                 | DS18B20    |
 | PH-Messfühler           | DFROBOT                 | SEN0161-V2 |
 | Messfühler Luftqualität | BME 680                 | BME 680    |
 
+#### Software-Komponenten
 | Software-Komponente |
 |---------------------|
-| Clion               |
-| Git-Hub             |
+| CLion               |
+| GitHub              |
 | MS-Excel            |
 
-## 3 Use Case:
+---
 
-Funktionen
+### Scrum Meetings
 
-Erfassen von Daten
-
-Ziel:
-Projekt-Beschreibung
-
-Auslöser:
-
-Vorbedingungen:
-Server muss erreichbar sein.
-Wifi Verbindung muss bestehen
-
-Ablauf einer Erfassung:
-
-Nachbedingungen:
-Der neue Datensatz ist in der CSV-Datei vorhanden und korrekt formatiert.
-
-Korrekturablauf:
-
-
-Ablauf einer Abfrage:
-
-Nachbedingungen:
-
-
-## 4 Anleitung fürs Programm:
-
-Voraussetzungen:
-- CLion (IDE von JetBrains)
-- Compiler (z. B. GCC für Linux, MinGW für Windows oder Xcode Command Line Tools für macOS)
-- Git (um Das Repository zu klonen)
-
-Projekt herunterladen:
-
-
-
-Programm ausführen:
-
-
-oder
-- Warte, bis CLion das Projekt vollständig indexiert hat.
-- Klicke auf Build. oder ctr. F9 (Windows)
-- Starte das Programm über den Pfeil Symbol oben rechts oder über Run.
-
-oder
--
-
-
-## 5 Fazit:
-
-| Funktion / Kriterium | Pflicht / Wunsch | Erfüllt?
-
-| Funktion/Kriterium                                 | Pflicht/Wunsch | erfüllt |           
-|----------------------------------------------------|----------------|---------|
-| Daten (Feststoff/Temperatur)erfassen mit Sensoren  | Muss           | OK      |
-| Daten in Controller aufbereiten                    | Muss           | OK      |
-| Daten via Wifi und API an Server senden            | Muss           | OK      |
-| Daten auf Server speichern CSV-Datei               | Muss           | OK      |
-| Daten (PH ) erfassen mit Sensoren                  | Wunsch         | 1)      |
-| Daten der Luft erfassen (Druck/Temperatur/Feuchte) | Wunsch         | OK      |
-
-1) Weil der PH-Sensor nicht erhalten wurde, fehlt diese Wunschfunktion.
-
-
-## 6 Scrum Meetings:
-
-## 20251115_Sprint1
-
+#### 20251115_Sprint1
 | Sprint-Ziel                  |           
 |------------------------------|
 | Rollenverteilung             | 
 | Projekt-Definition           | 
 | Hardware Definition          | 
 | Software Definition          | 
-| Git-Hub Resopitory erstellen | 
+| GitHub Repository erstellen  | 
 
-
-## 20251122_Sprint1 erreicht:
+#### 20251122_Sprint1 erreicht
 | Sprint-Ziel                  | Erfüllt |          
 |------------------------------|---------|
 | Rollenverteilung             | OK      |
 | Projekt-Definition           | OK      |
 | Hardware Definition          | OK      |
 | Software Definition          | OK      |
-| Git-Hub Resopitory erstellen | OK      |
+| GitHub Repository erstellen  | OK      |
 
-Rollenverteilung: Projekt-Owner: Isabel Geissmann
-Tech Lead: Stephan Fankhauser
-Scrum-Master: Peter Meier
+Rollenverteilung:
+- Projekt-Owner: Isabel Geissmann
+- Tech Lead: Stephan Fankhauser
+- Scrum-Master: Peter Meier
 
+#### 20251122_Sprint2
+| Sprint-Ziel                                  |           
+|----------------------------------------------|
+| Datenflussdiagramm erstellen                 | 
+| Ablaufdiagramm Controller & Server erstellen |  
 
-## 20251122_Sprint2
-| Sprint-Ziel                                |           
-|--------------------------------------------|
-| Datenflussdiagramm erstellen               | 
-| Ablaufdiagramm Controller&Server erstellen | 
+#### 20251129_Sprint2 erreicht
+| Sprint-Ziel                                  | Erfüllt |          
+|----------------------------------------------|---------|
+| Datenflussdiagramm erstellen                 | OK      |
+| Ablaufdiagramm Controller & Server erstellen | OK      |
 
+#### 20251129_Sprint3
+- Sprint-Ziel: (noch nicht ausgefüllt)
 
-## 20251129_Sprint2 erreicht:
-| Sprint-Ziel                                | Erfüllt |          
-|--------------------------------------------|---------|
-| Datenflussdiagramm erstellen               | OK      |
-| Ablaufdiagramm Controller&Server erstellen | OK      |
+#### 20251206_Sprint3 erreicht
+- Sprint-Ziel erreicht
 
-
-## 20251129_Sprint3
--Sprint-Ziel:
-
-## 20251206_Sprint3 erreicht:
-
-
-## 20251206_Sprint4
+#### 20251206_Sprint4
 | Sprint-Ziel                                                                                          |           
 |------------------------------------------------------------------------------------------------------|
-| CLion-Programm APi-Server erstellen/Daten vom Controller als CSV-Datei speichern.                    | 
-| CLion Programm das die Daten im Controller erfasst und  über WiFi an den API-Server sendet erstellen | 
-| Zusammensetzen der Programmteile und testen mit der Hardware                                         | 
+| CLion-Programm API-Server erstellen/Daten vom Controller als CSV-Datei speichern.                    | 
+| CLion Programm, das die Daten im Controller erfasst und über WiFi an den API-Server sendet erstellen | 
+| Zusammensetzen der Programmteile und Testen mit der Hardware                                         |  
 
-
-## 20251213_Sprint4 erreicht:
+#### 20251213_Sprint4 erreicht
 | Sprint-Ziel                                                                                          | Erfüllt |          
 |------------------------------------------------------------------------------------------------------|---------|
-| CLion-Programm APi-Server erstellen/Daten vom Controller als CSV-Datei speichern.                    | OK      |
-| CLion Programm das die Daten im Controller erfasst und  über WiFi an den API-Server sendet erstellen | OK      |
-| Zusammensetzen der Programmteile und testen mit der Hardware                                         | 1)      |
+| CLion-Programm API-Server erstellen/Daten vom Controller als CSV-Datei speichern.                    | OK      |
+| CLion Programm, das die Daten im Controller erfasst und über WiFi an den API-Server sendet erstellen | OK      |
+| Zusammensetzen der Programmteile und Testen mit der Hardware                                         | 1)      |
 
-1) Weil wie die Sensoren erst am Freitag, 12.12.2025 bekamen konnten
-   wir in dieser Woche den Punkt 3 nicht durchführen.
+1) Sensoren wurden erst am 12.12.2025 erhalten, deshalb konnte Punkt 3 nicht durchgeführt werden.
 
-
-## 20251213_Sprint5
- | Sprint-Ziel                                                                                          |           
+#### 20251213_Sprint5
+| Sprint-Ziel                                                                                          |           
 |------------------------------------------------------------------------------------------------------|
-| CLion Programm das die Daten im Controller erfasst und  über WiFi an den API-Server sendet erstellen |   
-| Zusammensetzen der Programmteile und testen mit der Hardware                                         |
+| CLion Programm, das die Daten im Controller erfasst und über WiFi an den API-Server sendet erstellen |   
+| Zusammensetzen der Programmteile und Testen mit der Hardware                                         |
 | System funktioniert (Hardware und Software)                                                          |
 | System im Teich und Lehrerzimmer installiert                                                         |
 | Daten über 3 Tage erfasst                                                                            |
-| Code  auf Git-Hub gespeichert                                                                        |
+| Code auf GitHub gespeichert                                                                          |
 | Dokumentation erstellt                                                                               |
 | Video erstellt                                                                                       |  
-| Test-dokument erstellt                                                                               |
+| Test-Dokument erstellt                                                                               |
 
-
-## 20251222_Sprint5 erreicht:
+#### 20251222_Sprint5 erreicht
 | Sprint-Ziel                                                                                          | Erfüllt |
 |------------------------------------------------------------------------------------------------------|---------|
-| CLion Programm das die Daten im Controller erfasst und  über WiFi an den API-Server sendet erstellen | OK      |
-| Zusammensetzen der Programmteile und testen mit der Hardware                                         | OK      |
+| CLion Programm, das die Daten im Controller erfasst und über WiFi an den API-Server sendet erstellen | OK      |
+| Zusammensetzen der Programmteile und Testen mit der Hardware                                         | OK      |
 | System funktioniert (Hardware und Software)                                                          | OK      |
 | System im Teich und Lehrerzimmer installiert                                                         | OK      |
 | Daten über 3 Tage erfasst                                                                            | 1)      |
-| Code auf Git-Hub gespeichert                                                                         | OK      |
+| Code auf GitHub gespeichert                                                                          | OK      |
 | Dokumentation erstellt                                                                               | OK      |
 | Video erstellt                                                                                       | OK      |
 | Test-Dokument erstellt                                                                               | OK      |
-| Projekdokumentation abgegeben                                                                        | OK      |
+| Projektdokumentation abgegeben                                                                       | OK      |
 
-1)Der erste Tag der Datenerfassung wurde Zuhause in einem Wassereimer
-erstellt und der zweite Teil im BBZ-Teich mit einem Testschiff.
-Dadurch haben wir durch das Datenloggen herausgefunden,
-dass das BBZ-W-LAN zwischen 23:00Uhr und 06:00 abgestellt wird.
-Deshalb fehlen in den CSV-Dateien die Daten zwischen 23:00 und 6:00Uhr.
+1) Erster Tag Datenerfassung Zuhause in Eimer, zweiter Teil im BBZ-Teich; BBZ-WLAN zwischen 23:00 und 06:00 Uhr aus.
 
-
-## 20251220_Sprint6
+#### 20251220_Sprint6
 | Sprint-Ziel                                |           
 |--------------------------------------------|
 | Präsentation Projekt im Januar vorbereiten | 
 | Präsentation beendet                       | 
 
--Sprint-Ziel: Präsentation Projekt im Januar vorbereiten
-
-## 20260109_Sprint6 erreicht:
+#### 20260109_Sprint6 erreicht
 | Sprint-Ziel                                | Erfüllt |          
 |--------------------------------------------|---------|
 | Präsentation Projekt im Januar vorbereiten |         |
-| Präsedntation beenet                       |         |
+| Präsentation beendet                       |         |
 
+---
 
-
-## 7 Flussdiagramm:
-
+### Flussdiagramm
 ![Datenflussdiagramm](Koi_Datenfluss-Diagramm.png)
 
+### Ablaufdiagramm
+![Ablaufdiagramm Controller & Server](Flussdiagramm_Wasserqualität.png)
 
-## 8 Systemsequenzdiagramm:
+### Projekt-Links
+- GitHub Repository 1: [koi_api](https://github.com/softwareentwicklung-hft/koi_api/tree/test)
+- GitHub Repository 2: [Projekt_2024](https://github.com/Latrusanimi/Koi)
+- CSV-Dateien: [waterdata_log.csv](https://github.com/softwareentwicklung-hft/koi_api/tree/test) | [airdata_log.csv](https://github.com/softwareentwicklung-hft/koi_api/tree/test)
+- Kanban: [GitHub Projects](https://github.com/users/pesche70/projects/7)
 
-![Systemsequenzdiagramm](Flussdiagramm_Wasserqualität.png)
+### HTTP Test-Befehle
 
-## 9 Projekt-Links:
-
-//GitHub  Repository https://github.com/orgs/softwareentwicklung-hft/repositories/koi_api  Branch <test>
-//GitHub  Repository https://github.com/Latrusanimi/Projekt_2024/commits?author=Latrusanimi/  Branch <test>
-
-//CSV-Dateien  waterdata_log.csv https://github.com/softwareentwicklung-hft/koi_api/tree/test
-               airdata_log.csv   https://github.com/softwareentwicklung-hft/koi_api/tree/test
-
-
-
-
-
-
-## 10 HTTP: Test-Befehle (Kommandozeile)
-
-Zum Anzeigen und Speichern von Luft und Wasserdaten auf einem Server (Notebook_xxx IP ist Netzabhängig).
-
+ Luftdaten abrufen
 curl -X GET http://<IP-Adresse Server>:18080/koi/air
+
+ Luftdaten speichern
 curl -X POST http://<IP-Adresse Server>/koi/air -H "Content-Type: application/json" -d "{\"device_id\": \"SENSOR_01\", \"timestamp\": 1704067200, \"pressure_value\": 1012.5, \"temp_value\": 22.8, \"humidity_value\": 55.7}"
 
-Zum Anzeigen und Speichern von Wasserdaten
-
+ Wasserdaten speichern
 curl -X POST http://<IP-Adresse Server>:18080/koi/water -H "Content-Type: application/json" -d "{\"device_id\": \"SENSOR_02\", \"timestamp\": 1704067200, \"tds_value\": 1012.5, \"temp_value\": 22.8, \"ph_value\": 7}"
-curl -X GET  http://<IP-Adresse Server>:18080/koi/water
 
-## 11 Systemtest
-
-1 Stabilität der W-LAN-Verbindung wurde beim Erfassen der Daten das BBZ-Netzwerk zwischen 23:00 und 6:00Uhr
-  abgestellt. Danach lief die Datenerfassung einwandfrei weiter.
-
-2 Fehlen von einzelnen Daten im CSV-Datei
-
-3
-
-20251221
-
+ Wasserdaten abrufen
+curl -X GET http://<IP-Adresse Server>:18080/koi/water
