@@ -8,7 +8,7 @@ Stephan Fankhauser (Tech-Lead)
 
 Peter Meier (Scrum-Master)
 
-Dieses readme.md gilt für beide GitHub Projekt-Repository:
+Dieses readme.md gilt für beide GitHub Projekt-Repository: 
 https://github.com/softwareentwicklung-hft/koi_api/tree/test
 https://github.com/Latrusanimi/Koi
 
