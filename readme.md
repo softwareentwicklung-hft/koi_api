@@ -82,14 +82,13 @@ der sie jeweils in einer separaten csv-Datei speichert.
 | Messfühler Luftqualität | BME 680                 | BME 680    |
 
 #### Aktuelles Setting
-| Hardware-Komponente     | Bezeichnung             | Typ        |
-|-------------------------|-------------------------|------------|
-| Microcontroller ESP32   | Freenove ESP32-S3-WROOM | FNK0099    |
-| Breakoutboard           | Freenove Breakoutboard  | FNK0091    |
-| TDS-Sensor              | Seed Studio SKU X       | 101020753  |
-| Temperaturfühler        | DS18B20                 | DS18B20    |
-| PH-Messfühler           | DFROBOT                 | SEN0161-V2 |
-| Messfühler Luftqualität | BME 680                 | BME 680    |
+| Hardware-Komponente     | Bezeichnung             | Typ            |
+|-------------------------|-------------------------|----------------|
+| Microcontroller ESP32   | YD ESP32-S3-WROOM       | ESP32-23       |
+| Breakoutboard           | YD Breakoutboard        | ESP32-S3 44P   |
+| TDS-Sensor              | Seed Studio SKU X       | 101020753      |
+| Temperaturfühler        | DS18B20                 | DS18B20        |
+| Messfühler Luftqualität | BME 680                 | BME 680        |
 
 ### Software-Komponenten
 | Software-Komponente |
